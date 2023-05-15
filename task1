@@ -1,0 +1,108 @@
+# temperatureconvertor
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Temperature Converter</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f2f2f2;
+    }
+
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    input[type="number"], select {
+      padding: 5px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    p {
+      margin-top: 20px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    #result {
+      color: #4CAF50;
+    }
+  </style>
+  <script>
+    function convertTemperature() {
+      // Get input values
+      var temperature = parseFloat(document.getElementById("temperature").value);
+      var fromUnit = document.getElementById("fromUnit").value;
+      var toUnit = document.getElementById("toUnit").value;
+
+      // Perform conversion
+      var result;
+      if (fromUnit === "celsius" && toUnit === "fahrenheit") {
+        result = (temperature * 9/5) + 32;
+      } else if (fromUnit === "fahrenheit" && toUnit === "celsius") {
+        result = (temperature - 32) * 5/9;
+      } else {
+        result = temperature; // No conversion needed
+      }
+
+      // Display result
+      document.getElementById("result").innerHTML = result.toFixed(2);
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h1>Temperature Converter</h1>
+    
+    <label for="temperature">Temperature:</label>
+    <input type="number" id="temperature" name="temperature">
+    
+    <label for="fromUnit">From:</label>
+    <select id="fromUnit" name="fromUnit">
+      <option value="celsius">Celsius</option>
+      <option value="fahrenheit">Fahrenheit</option>
+    </select>
+    
+    <label for="toUnit">To:</label>
+    <select id="toUnit" name="toUnit">
+      <option value="celsius">Celsius</option>
+      <option value="fahrenheit">Fahrenheit</option>
+    </select>
+    
+    <button onclick="convertTemperature()">Convert</button>
+    
+    <p>Result: <span id="result"></span></p>
+  </div>
+</body>
